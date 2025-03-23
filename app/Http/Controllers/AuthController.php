@@ -9,7 +9,7 @@ use App\Models\StatesModel;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Request;
 
 class AuthController extends Controller
 {
@@ -30,7 +30,7 @@ class AuthController extends Controller
             return \redirect()->route('home');
         };
 
-        return \redirect()->back();
+        return \redirect()->back()->with('message', 'Usuário não identificado');
     }
 
     public function forgotPassword(): View
@@ -41,6 +41,12 @@ class AuthController extends Controller
     public function saveRegister(RegisterRequest $r): RedirectResponse
     {
         User::create($r->only(['name', 'email', 'password', 'state_id']));
+        return \redirect()->route('login');
+    }
+
+    public function logout(): RedirectResponse
+    {
+        Auth::logout();
         return \redirect()->route('login');
     }
 }

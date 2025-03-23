@@ -6,6 +6,7 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
   font-family: "Inter", Arial, Helvetica, sans-serif;
 }
@@ -14,9 +15,10 @@ body {
 */
 header {
   width: 100%;
-  padding: 30px 0;
+  padding: 15px 0;
   border-bottom: 1.5px solid #e7e9ed;
 }
+
 .header-area {
   max-width: 1280px;
   margin: auto;
@@ -24,6 +26,7 @@ header {
   justify-content: space-between;
   align-items: center;
 }
+
 .header-area-left {
   font-size: 24px;
   font-style: normal;
@@ -32,25 +35,35 @@ header {
   text-decoration: none;
   color: #5c7bfa;
 }
+
 .header-area-right {
-  width: 316px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
+.header-area-right > a {
+    margin: 0 10px;
+}
+
 .my-account {
   display: flex;
+  flex-flow: column nowrap;
   align-items: center;
+  justify-content: center;
   text-decoration: none;
   color: #96a3ab;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  text-align: center;
 }
+
 .my-account img {
   margin-right: 10px;
 }
+
 .announce-now {
   text-decoration: none;
   font-size: 16px;
@@ -58,10 +71,16 @@ header {
   font-weight: 600;
   line-height: normal;
   color: #5c7bfa;
+  text-align: right;
+  display: flex;
+  flex-flow: column nowrap;
+
 }
+
 .menu-icon {
   display: none;
 }
+
 .menu-mobile {
   display: none;
   width: 180px;
@@ -73,6 +92,7 @@ header {
   flex-direction: column;
   align-items: center;
 }
+
 .my-account-mobile {
   display: flex;
   justify-content: space-between;

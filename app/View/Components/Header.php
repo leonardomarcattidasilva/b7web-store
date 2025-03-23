@@ -11,9 +11,11 @@ class Header extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public string $name;
+
+    public function __construct($name)
     {
-        //
+        $this->name = $name;
     }
 
     /**
@@ -21,7 +23,7 @@ class Header extends Component
      */
     public function render(): View|Closure|string
     {
-        $data['user'] = 'Leo';
-        return view('components.header', $data);
+
+        return view('components.header');
     }
 }

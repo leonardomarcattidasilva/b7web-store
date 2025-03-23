@@ -5,7 +5,9 @@ use App\Http\Controllers\PagesController;
 use App\Http\Controllers\AuthController;
 
 Route::controller(PagesController::class)->group(function () {
-    Route::get('/', 'index')->middleware('auth');
+    Route::middleware('auth')->group(function () {
+        Route::get('/', 'index')->name('home');
+    });
 });
 
 Route::controller(AuthController::class)->group(function () {
@@ -14,4 +16,5 @@ Route::controller(AuthController::class)->group(function () {
     Route::get('/login', 'login')->name('login');
     Route::get('/forgotPassword', 'forgotPassword')->name('forgotPassword');
     Route::post('/loginAction', 'loginAction')->name('loginAction');
+    Route::get('/logout', 'logout')->name('logout')->middleware('auth');
 });

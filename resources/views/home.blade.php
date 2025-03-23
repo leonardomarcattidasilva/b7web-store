@@ -5,7 +5,7 @@
 <x-top title="B7Web Store" />
 
 <body>
-    <x-header />
+    <x-header :name=$name />
     <x-hero />
     <main>
         <x-advertises />

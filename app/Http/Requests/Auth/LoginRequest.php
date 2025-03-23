@@ -28,7 +28,16 @@ class LoginRequest extends FormRequest
     {
         return [
             'email' => ['required', 'string', 'email'],
-            'password' => ['required', 'string'],
+            'password' => ['required', 'string']
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'email.required' => 'O email é obrigatório',
+            'email.email' => 'O email não é válido',
+            'password.required' => 'A senha nome é obrigatória',
         ];
     }
 
@@ -80,6 +89,6 @@ class LoginRequest extends FormRequest
      */
     public function throttleKey(): string
     {
-        return Str::transliterate(Str::lower($this->string('email')).'|'.$this->ip());
+        return Str::transliterate(Str::lower($this->string('email')) . '|' . $this->ip());
     }
 }

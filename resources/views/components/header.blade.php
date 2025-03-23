@@ -3,12 +3,12 @@
         <a href="" class="header-area-left">B7Store</a>
         <div class="header-area-right">
             @if(Auth::user())
-            <a href="login.html" class="my-account">
+            <a href="{{route('logout')}}" class="my-account">
                 <img src="{{asset('temp/icons/userIcon.png')}}" />
-                {{Auth::user()->name}}
+                {{$name}}
             </a>
             @endif
-            <a href="" class="announce-now">Anunciar agora →</a>
+            <a href="" class="announce-now">Anunciar</a>
             <img class="menu-icon" src="{{asset('temp/icons/menuIcon.png')}}" alt="Menu" />
             <div class="menu-mobile">
                 <a href="myAccount.html" class="my-account-mobile">

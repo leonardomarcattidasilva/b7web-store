@@ -5,11 +5,14 @@
 <body>
     <div class="login-page">
         <div class="login-area">
+            @if(session('message'))
+            <p id="alert_userNotFound">{{session('message')}}</p>
+            @endif
             <h3 class="login-title">B7Store</h3>
             <form method="post" action="{{route('loginAction')}}">
                 @csrf
-                <x-forms.input class="email-area" labelClass="email-label" label="Email" value="" error="" name="email" type="email" placeholder="Digite o seu e-mail" />
-                <x-forms.password class="password-area" labelClass="password-label" label="Senha" value="" error="" name="password" type="password" placeholder="Digite sua senha" />
+                <x-forms.input class="email-area" labelClass="email-label" label="Email" value="" error="" name="email" type="email" placeholder="Digite o seu e-mail" error="{{$errors->first('email')}}" />
+                <x-forms.password class="password-area" labelClass="password-label" label="Senha" value="" error="" name="password" type="password" placeholder="Digite sua senha" error="{{$errors->first('password')}}" />
                 <a href="{{route('forgotPassword')}}" class="password-area-forgot">Esqueceu sua senha?</a>
                 <button class="login-button">Entrar</button>
             </form>
