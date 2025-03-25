@@ -6,6 +6,7 @@
 
 <body>
     <x-header :name=$name />
+
     <x-hero />
     <main>
         <x-advertises />

@@ -204,6 +204,10 @@ main {
   display: flex;
   justify-content: space-between;
 }
+
+small {
+    color: tomato;
+}
 .buttons .cars,
 .buttons .eletronics,
 .buttons .clothes,

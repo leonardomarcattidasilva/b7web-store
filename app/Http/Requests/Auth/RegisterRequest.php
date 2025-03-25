@@ -3,6 +3,8 @@
 namespace App\Http\Requests\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class RegisterRequest extends FormRequest
 {
@@ -21,9 +23,11 @@ class RegisterRequest extends FormRequest
      */
     public function rules(): array
     {
+        $userID = Auth::user()->id;
+
         return [
             'name' => 'required|min:3',
-            'email' => 'required|email|unique:App\Models\User,email',
+            'email' => ['required', 'email', Rule::unique('users')->ignore($userID)],
             'state_id' => 'required',
             'password' => 'required|min:3|confirmed'
         ];
@@ -38,7 +42,7 @@ class RegisterRequest extends FormRequest
             'email.email' => 'O email não é válido',
             'email.unique' => 'O email já está sendo usado',
             'state_id.required' => 'O campo estado é obrigatório',
-            'password.required' => 'A senha nome é obrigatória',
+            'password.required' => 'A senha é obrigatória',
             'password.min' => 'O campo nome deve ter no mínimo 3 caracteres',
             'password.confirmed' => 'A senha não pode ser confirmada',
         ];

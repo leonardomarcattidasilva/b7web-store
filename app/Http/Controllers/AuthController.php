@@ -9,7 +9,8 @@ use App\Models\StatesModel;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -40,7 +41,8 @@ class AuthController extends Controller
 
     public function saveRegister(RegisterRequest $r): RedirectResponse
     {
-        User::create($r->only(['name', 'email', 'password', 'state_id']));
+        $userData = $r->only(['name', 'email', 'password', 'state_id']);
+        $userData['password'] = Hash::make($userData['password']);
         return \redirect()->route('login');
     }
 
@@ -48,5 +50,14 @@ class AuthController extends Controller
     {
         Auth::logout();
         return \redirect()->route('login');
+    }
+
+    public function update(RegisterRequest $r)
+    {
+
+        $userData = $r->only(['name', 'email', 'password', 'state_id']);
+        $userData['password'] = Hash::make($userData['password']);
+        User::where('id', Auth::user()->id)->update($userData);
+        return \redirect()->back()->with('message', 'Usuário atualizado');
     }
 }
