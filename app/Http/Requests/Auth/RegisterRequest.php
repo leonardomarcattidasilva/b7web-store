@@ -28,7 +28,7 @@ class RegisterRequest extends FormRequest
         return [
             'name' => 'required|min:3',
             'email' => ['required', 'email', Rule::unique('users')->ignore($userID)],
-            'state_id' => 'required',
+            'state_id' => 'required|exists:states,id',
             'password' => 'required|min:3|confirmed'
         ];
     }

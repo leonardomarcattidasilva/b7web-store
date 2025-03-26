@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<x-top title="Login" styles="myAccountStyle" />
+<x-top title="Update Profile" styles="myAccountStyle" />
 
 <body>
     <x-header :name=$name />
