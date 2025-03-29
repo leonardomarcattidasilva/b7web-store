@@ -6,14 +6,7 @@
   min-height: calc(100vh - var(--footerHeight));
   display: flex;
 }
-.sidebar {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 184px;
-  border-right: 1.5px solid #e7e9ed;
-  padding-top: 50px;
-}
+
 .sidebar a {
   display: flex;
   align-items: center;

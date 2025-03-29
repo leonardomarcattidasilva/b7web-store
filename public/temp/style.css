@@ -205,6 +205,15 @@ main {
   justify-content: space-between;
 }
 
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 184px;
+  border-right: 1.5px solid #e7e9ed;
+  padding-top: 50px;
+}
+
 small {
     color: tomato;
 }

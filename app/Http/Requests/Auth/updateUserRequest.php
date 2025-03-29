@@ -3,10 +3,10 @@
 namespace App\Http\Requests\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
-
-
-class RegisterRequest extends FormRequest
+class updateUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,9 +23,11 @@ class RegisterRequest extends FormRequest
      */
     public function rules(): array
     {
+        $userID = Auth::user()?->id;
+
         return [
             'name' => 'required|min:3',
-            'email' => 'required|email|unique:users,email',
+            'email' => ['required', 'email', Rule::unique('users')->ignore($userID)],
             'state_id' => 'required|exists:states,id',
             'password' => 'required|min:3|confirmed'
         ];

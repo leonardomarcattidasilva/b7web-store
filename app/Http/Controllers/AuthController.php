@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
+use App\Http\Requests\Auth\updateUserRequest;
 use Illuminate\Contracts\View\View;
 use App\Models\StatesModel;
 use App\Models\User;
@@ -17,12 +18,14 @@ class AuthController extends Controller
     public function register(): View
     {
         $states = StatesModel::all();
-        return view('auth.register', ['states' => $states]);
+        $data = ['title' => "Registre-se",  'styles' => "loginSignUpStyle", 'states' => $states];
+        return view('auth.register', $data);
     }
 
     public function login(): View
     {
-        return view('auth.login');
+        $data = ['title' => "Login", 'styles' => "loginSignUpStyle"];
+        return view('auth.login', $data);
     }
 
     public function loginAction(LoginRequest $r)
@@ -43,6 +46,7 @@ class AuthController extends Controller
     {
         $userData = $r->only(['name', 'email', 'password', 'state_id']);
         $userData['password'] = Hash::make($userData['password']);
+        User::create($userData);
         return \redirect()->route('login');
     }
 
@@ -52,7 +56,7 @@ class AuthController extends Controller
         return \redirect()->route('login');
     }
 
-    public function update(RegisterRequest $r)
+    public function update(updateUserRequest $r)
     {
 
         $userData = $r->only(['name', 'email', 'password', 'state_id']);

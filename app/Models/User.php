@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\StatesModel;
+use App\Models\AdvertisesModel;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -25,6 +27,8 @@ class User extends Authenticatable
         'password',
         'state_id'
     ];
+
+    // protected $table = 'users';
 
     /**
      * The attributes that should be hidden for serialization.
@@ -52,5 +56,10 @@ class User extends Authenticatable
     public function state(): BelongsTo
     {
         return $this->belongsTo(StatesModel::class);
+    }
+
+    public function advertises(): HasMany
+    {
+        return $this->hasMany(AdvertisesModel::class);
     }
 }

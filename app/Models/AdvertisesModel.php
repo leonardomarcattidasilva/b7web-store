@@ -3,8 +3,11 @@
 namespace App\Models;
 
 use App\Models\CategoriesModel;
+use App\Models\PhotosModel;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class AdvertisesModel extends Model
 {
@@ -14,5 +17,15 @@ class AdvertisesModel extends Model
     public function category(): BelongsTo
     {
         return $this->belongsTo(CategoriesModel::class);
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function photos(): HasMany
+    {
+        return $this->hasMany(PhotosModel::class, 'advertise_id');
     }
 }

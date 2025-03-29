@@ -8,6 +8,7 @@ Route::controller(PagesController::class)->group(function () {
     Route::middleware('auth')->group(function () {
         Route::get('/', 'index')->name('home');
         Route::get('/myProfile', 'myProfile')->name('myProfile');
+        Route::get('/myAds', 'myAds')->name('myAds');
     });
 });
 

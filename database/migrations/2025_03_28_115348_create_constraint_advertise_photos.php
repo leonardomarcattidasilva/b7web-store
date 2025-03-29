@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('advertises', function (Blueprint $table) {
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('category_id')->references('id')->on('categories');
+        Schema::table('advertise_photos', function (Blueprint $table) {
+            $table->foreign('advertise_id')->references('id')->on('advertises');
         });
     }
 
@@ -22,9 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('advertises', function (Blueprint $table) {
-            $table->dropForeign('user_id');
-            $table->dropForeign('category_id');
+        Schema::table('advertise_photos', function (Blueprint $table) {
+            $table->dropForeign('advertise_id');
         });
     }
 };

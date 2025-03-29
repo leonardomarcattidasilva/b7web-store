@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use App\Models\StatesModel;
+use App\Models\PhotosModel;
 
 class PagesController extends Controller
 {
@@ -24,8 +25,16 @@ class PagesController extends Controller
 
     public function myProfile(): View
     {
-        $data = $this->getUserData();
+        $userData = $this->getUserData();
         $states = StatesModel::all();
-        return view('myProfile', ['states' => $states, 'user' => $data['user'], 'name' => $data['name'][0]]);
+        $data = ['states' => $states, 'user' => $userData['user'], 'name' => $userData['name'][0], 'title' => "Update Profile", 'styles' => "myAccountStyle"];
+        return view('myProfile', $data);
+    }
+
+    public function myAds(): View
+    {
+        $userData = $this->getUserData();
+        $data = ['name' => $userData['name'][0], 'styles' => 'myAdsStyle', 'title' => 'B7Store - Meus anúncios', 'advertises' => $userData['user']->advertises];
+        return view('myAds', $data);
     }
 }

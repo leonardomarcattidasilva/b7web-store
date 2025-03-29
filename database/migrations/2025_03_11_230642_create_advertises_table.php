@@ -18,10 +18,9 @@ return new class extends Migration
             $table->string('description');
             $table->string('contact');
             $table->string('views');
-            $table->unsignedBigInteger('user_id');
             $table->float('price');
             $table->boolean('negotiate')->default(false);
-            $table->unsignedBigInteger('state_id');
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('category_id');
             $table->timestamps();
         });
